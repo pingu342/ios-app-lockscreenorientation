@@ -76,6 +76,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	NSLog(@"%s row=%ld", __FUNCTION__, indexPath.row);
+	
 	switch (indexPath.row) {
 		case 0:
 			self.parent.screenOrientation = ScreenOrientationAuto;

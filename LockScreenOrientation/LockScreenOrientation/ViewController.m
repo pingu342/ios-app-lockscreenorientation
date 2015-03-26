@@ -22,7 +22,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
-	self.screenOrientation = ScreenOrientationAuto;
+	_screenOrientation = ScreenOrientationAuto;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
@@ -35,7 +35,7 @@
 }
 
 - (BOOL)shouldAutorotate {
-	return NO;
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,9 +55,12 @@
 	_screenOrientation = screenOrientation;
 	//[UIViewController attemptRotationToDeviceOrientation];
 	
+	// 画面の向きを変更
 	TmpViewController *tmp = [self.storyboard instantiateViewControllerWithIdentifier:@"TmpViewController"];
 	[self presentViewController:tmp animated:NO completion:^(void){
-		[self dismissViewControllerAnimated:NO completion:nil];
+		dispatch_after(0, dispatch_get_main_queue(), ^(void){
+			[self dismissViewControllerAnimated:NO completion:nil];
+		});
 	}];
 }
 
